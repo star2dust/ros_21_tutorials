@@ -1,0 +1,7 @@
+<!-- 组合小车底盘与摄像头 -->
+<robot name="my_car_camera" xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:include filename="inertia_macro.xacro" />
+    <xacro:include filename="diff_wheel_gazebo.xacro" />
+    <xacro:include filename="camera_gazebo.xacro" />
+    <xacro:include filename="laser_gazebo.xacro" />
+</robot>

@@ -1,0 +1,16 @@
+<launch>
+    <!-- 设置变量 -->
+    <arg name="car_type" default="box_car" />
+
+    <!-- 设置参数 -->
+    <param name="robot_description" textfile="$(find learn_modelling)/urdf/$(arg car_type)_gazebo.urdf" />
+
+    <!-- 启动gazebo -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+    <!-- 在gazebo中显示机器人模型 -->
+    <!-- model这里自定义robot name，可以与xacro里不同 -->
+    <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model mycar -param robot_description"  />
+
+</launch>
+

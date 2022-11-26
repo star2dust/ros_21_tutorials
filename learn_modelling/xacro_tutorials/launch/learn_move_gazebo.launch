@@ -1,0 +1,25 @@
+<launch>
+    <!-- 设置变量 -->
+    <arg name="car_type" default="diff_wheel_move_with_camera_laser" />
+
+    <!-- command+$(find xacro)/xacro -->
+    <!-- 将 Urdf 文件的内容加载到参数服务器 -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find learn_modelling)/urdf/$(arg car_type)_gazebo.xacro" />
+    <!-- 启动 gazebo -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+    <!-- 在 gazebo 中显示机器人模型 -->
+    <!-- model这里要写robot name -->
+    <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model my_car_camera -param robot_description"  />
+
+    <!-- 启动 rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find learn_modelling)/config/mycar_gazebo.rviz" />
+
+    <!-- 关节以及机器人状态发布节点（gazebo有joint state发布功能，第一个没用） -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+        <remap from="/joint_states" to="/robot_joint_states"/>
+    </node>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+</launch>
+

@@ -1,0 +1,21 @@
+<launch>
+    <!-- 设置变量 -->
+    <arg name="car_type" default="diff_wheel" />
+
+    <!-- 设置参数 -->
+    <param name="robot_description" textfile="$(find learn_modelling)/urdf/$(arg car_type).urdf" />
+
+    <!-- 启动 rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find learn_modelling)/config/mycar.rviz" />
+
+    <!-- urdf中定义了joint以下三项才有用（一三项发布同一个topic会打架） -->
+
+    <!-- 添加关节状态发布节点 -->
+    <!-- <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" /> -->
+    <!-- 添加机器人状态发布节点 -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+    <!-- 可选:用于控制关节运动的节点 -->
+    <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" />
+
+</launch>
+

@@ -1,0 +1,17 @@
+<package format="2">
+  <name>xacro_tutorials</name>
+  <version>1.0.0</version>
+  <description>Learn how to build and control robots in gazebo.</description>
+
+  <maintainer email="wuchu9402@163.com">Chu Wu</maintainer>
+
+  <author>Chu Wu</author>
+  <author>Autolabor</author>
+
+  <license>ASL 2.0</license>
+
+  <url type="website">http://www.autolabor.com.cn</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>
